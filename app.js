@@ -24,3 +24,12 @@ app.listen(3000, ()=> {
 app.get('/', (req,res) => {
     res.render('home')
 })
+
+app.get('/create', (req,res) => {
+    res.render('create')
+})
+
+app.post('/create', (req,res) =>{
+    console.log(req.body)
+    res.send(req.body)
+})
