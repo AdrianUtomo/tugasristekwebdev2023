@@ -21,15 +21,18 @@ app.listen(3000, ()=> {
     console.log('Serving on port 3000')
 })
 
-app.get('/', (req,res) => {
-    res.render('home')
+app.get('/', async (req,res) => {
+    const messages = await Message.find({})
+    res.render('home', {messages})
 })
 
 app.get('/create', (req,res) => {
     res.render('create')
 })
 
-app.post('/create', (req,res) =>{
+app.post('/create', async (req,res) =>{
+    const message = new Message(req.body)
+    await message.save()
     console.log(req.body)
-    res.send(req.body)
+    res.redirect('/')
 })

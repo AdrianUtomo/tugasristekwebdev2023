@@ -8,5 +8,13 @@
 </head>
 <body>
     <h1>Hello World</h1>
+    <h2>These are the messages available :</h2>
+    <ul>
+        <li>
+            <% for( message of messages ) { %>
+                <%= message.content %>
+            <% } %>
+        </li>
+    </ul>
 </body>
 </html>
