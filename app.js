@@ -21,11 +21,14 @@ app.listen(3000, ()=> {
     console.log('Serving on port 3000')
 })
 
+// All Tweets (READ)
 app.get('/', async (req,res) => {
     const messages = await Message.find({})
     res.render('home', {messages})
 })
+///////////////
 
+// Post Tweet (CREATE)
 app.get('/create', (req,res) => {
     res.render('create')
 })
@@ -36,3 +39,17 @@ app.post('/create', async (req,res) =>{
     console.log(req.body)
     res.redirect('/')
 })
+///////////////
+
+// Edit Tweets (UPDATE)
+app.get('/edit/:id', async(req,res) =>{
+    const message = await Message.findById(req.params.id)
+    res.render('edit', {message})
+})
+
+app.put('/edit/:id', async(req,res) =>{
+    const {id} = req.params
+    await Message.findByIdAndUpdate(id, {...req.body})
+    res.redirect(`/edit/${id}`)
+})
+///////////////
