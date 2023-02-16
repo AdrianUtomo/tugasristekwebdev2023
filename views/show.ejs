@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweet</title>
+</head>
+<body>
+    <h1>Tweet Details</h1>
+    <h2><%= message.content %></h2>
+    <h2><%= message.date %></h2>
+    <footer>
+        <a href="/tweet/<%= message._id %>/edit">Edit</a>
+        <form action="/tweet/<%= message._id %>?_method=DELETE" method="post">
+            <button>Delete</button>
+        </form>
+        <a href="/">All Tweets</a>
+    </footer>
+</body>
+</html>

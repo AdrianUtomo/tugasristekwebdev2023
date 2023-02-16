@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
+const morgan = require('morgan')
 const Message = require('./models/risteksocial')
 
 mongoose.connect('mongodb://localhost:27017/ristek-social')
@@ -14,6 +16,8 @@ db.once("open", ()=> {
 
 app.set('views', path.join(__dirname,'views'))
 app.set('view engine', 'ejs')
+app.use(morgan('dev'))
+app.use(methodOverride('_method'))
 
 app.use(express.urlencoded({extended: true}))
 
@@ -21,10 +25,15 @@ app.listen(3000, ()=> {
     console.log('Serving on port 3000')
 })
 
-// All Tweets (READ)
+// Read Tweets (READ)
 app.get('/', async (req,res) => {
     const messages = await Message.find({})
     res.render('home', {messages})
+})
+
+app.get('/tweet/:id', async (req,res) => {
+    const message = await Message.findById(req.params.id)
+    res.render('show', {message})
 })
 ///////////////
 
@@ -36,20 +45,27 @@ app.get('/create', (req,res) => {
 app.post('/create', async (req,res) =>{
     const message = new Message(req.body)
     await message.save()
-    console.log(req.body)
-    res.redirect('/')
+    res.redirect(`/tweet/${message._id}`)
 })
 ///////////////
 
 // Edit Tweets (UPDATE)
-app.get('/edit/:id', async(req,res) =>{
+app.get('/tweet/:id/edit', async(req,res) =>{
     const message = await Message.findById(req.params.id)
     res.render('edit', {message})
 })
 
-app.put('/edit/:id', async(req,res) =>{
+app.post('/tweet/:id', async(req,res) =>{
     const {id} = req.params
     await Message.findByIdAndUpdate(id, {...req.body})
-    res.redirect(`/edit/${id}`)
+    res.redirect(`/tweet/${id}`)
+})
+///////////////
+
+// Delete Tweets (DELETE)
+app.delete('/tweet/:id', async (req,res) => {
+    const {id} = req.params
+    await Message.findByIdAndDelete(id);
+    res.redirect('/')
 })
 ///////////////
