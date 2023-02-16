@@ -25,6 +25,10 @@ app.listen(3000, ()=> {
     console.log('Serving on port 3000')
 })
 
+// API
+require('./endpoint')(app,Message)
+///////////////
+
 // Read Tweets (READ)
 app.get('/', async (req,res) => {
     const messages = await Message.find({})
