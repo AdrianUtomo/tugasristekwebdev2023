@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose')
+const axios = require('axios')
 const methodOverride = require('method-override')
 const morgan = require('morgan')
 const Message = require('./models/risteksocial')
@@ -31,12 +32,16 @@ require('./endpoint')(app,Message)
 
 // Read Tweets (READ)
 app.get('/', async (req,res) => {
-    const messages = await Message.find({})
+    const {data} = await axios.get(`//${req.get('host')}/api/all`)
+    const messages = data;
+    // const messages = await Message.find({})
     res.render('home', {messages})
 })
 
 app.get('/tweet/:id', async (req,res) => {
-    const message = await Message.findById(req.params.id)
+    const {data} = await axios.get(`//${req.get('host')}/api/${req.params.id}`)
+    const message = data;
+    // const message = await Message.findById(req.params.id)
     res.render('show', {message})
 })
 ///////////////
