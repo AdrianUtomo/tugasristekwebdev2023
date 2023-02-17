@@ -52,9 +52,19 @@ app.get('/create', (req,res) => {
 })
 
 app.post('/create', async (req,res) =>{
-    const message = new Message(req.body)
-    await message.save()
-    res.redirect(`/tweet/${message._id}`)
+    await axios.post(`//${req.get('host')}/api/create`, {
+        content: req.body.content,
+        date: req.body.date
+      }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+
+    // const message = new Message(req.body)
+    // await message.save()
+
+    // res.redirect(`/tweet/${message._id}`)
 })
 ///////////////
 
