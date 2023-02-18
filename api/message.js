@@ -15,7 +15,7 @@ module.exports = (app, Message) => {
         res.send(message);
     })
     
-    app.put('/api/:id/edit', async (req,res) => {
+    app.put('/api/:id', async (req,res) => {
         const {id} = req.params
         const message = await Message.findByIdAndUpdate(id, {...req.body})
         res.send(message)

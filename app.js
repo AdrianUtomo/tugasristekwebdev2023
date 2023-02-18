@@ -76,7 +76,7 @@ app.get('/tweet/:id/edit', async(req,res) =>{
 })
 
 app.post('/tweet/:id', async(req,res) =>{
-    await axios.put(`//${req.get('host')}/api/${req.params.id}/edit`, {
+    await axios.put(`//${req.get('host')}/api/${req.params.id}`, {
         content: req.body.content,
         date: req.body.date
       }, {
