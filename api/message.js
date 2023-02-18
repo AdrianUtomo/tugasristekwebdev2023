@@ -7,8 +7,7 @@ module.exports = (app, Message) => {
     app.post('/api/create', async (req,res) =>{
         const message = new Message(req.body)
         await message.save()
-        console.log(req.body)
-        res.send(req.body)
+        res.send(message)
     })
 
     app.get('/api/:id', async (req,res) => {
