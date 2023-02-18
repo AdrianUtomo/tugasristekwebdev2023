@@ -92,8 +92,11 @@ app.post('/tweet/:id', async(req,res) =>{
 
 // Delete Tweets (DELETE)
 app.delete('/tweet/:id', async (req,res) => {
-    const {id} = req.params
-    await Message.findByIdAndDelete(id);
+    await axios.delete(`//${req.get('host')}/api/${req.params.id}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
     res.redirect('/')
 })
 ///////////////

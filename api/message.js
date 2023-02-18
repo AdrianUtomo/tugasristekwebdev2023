@@ -20,4 +20,10 @@ module.exports = (app, Message) => {
         const message = await Message.findByIdAndUpdate(id, {...req.body})
         res.send(message)
     })
+
+    app.delete('/api/:id', async (req,res) => {
+        const {id} = req.params
+        const message = await Message.findByIdAndDelete(id);
+        res.send(message)
+    })
 }
