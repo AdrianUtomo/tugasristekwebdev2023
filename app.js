@@ -27,7 +27,7 @@ app.listen(3000, ()=> {
 })
 
 // API
-require('./endpoint')(app,Message)
+require('./api/message')(app,Message)
 ///////////////
 
 // Read Tweets (READ)
@@ -70,14 +70,24 @@ app.post('/create', async (req,res) =>{
 
 // Edit Tweets (UPDATE)
 app.get('/tweet/:id/edit', async(req,res) =>{
-    const message = await Message.findById(req.params.id)
+    const {data} = await axios.get(`//${req.get('host')}/api/${req.params.id}`)
+    const message = data;
+    // const message = await Message.findById(req.params.id)
     res.render('edit', {message})
 })
 
 app.post('/tweet/:id', async(req,res) =>{
-    const {id} = req.params
-    await Message.findByIdAndUpdate(id, {...req.body})
-    res.redirect(`/tweet/${id}`)
+    await axios.put(`//${req.get('host')}/api/${req.params.id}/edit`, {
+        content: req.body.content,
+        date: req.body.date
+      }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+    // const {id} = req.params
+    // await Message.findByIdAndUpdate(id, {...req.body})
+    res.redirect(`/tweet/${req.params.id}`)
 })
 ///////////////
 
