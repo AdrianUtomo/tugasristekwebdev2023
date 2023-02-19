@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
     <title>Tweet</title>
 </head>
 <body>
-    <h1>Tweet Details</h1>
-    <h2><%= message.content %></h2>
-    <h2><%= message.date %></h2>
-    <footer>
-        <a href="/tweet/<%= message._id %>/edit">Edit</a>
-        <form action="/tweet/<%= message._id %>?_method=DELETE" method="post">
-            <button>Delete</button>
-        </form>
-        <a href="/">All Tweets</a>
-    </footer>
+    <%- include('partials/navbar') %>
+    <main class="container">
+        <h1>Tweet Details</h1>
+        <h2><%= message.content %></h2>
+        <h2><%= message.date %></h2>
+        <footer>
+            <a role="button" href="/tweet/<%= message._id %>/edit">Edit</a>
+            <form action="/tweet/<%= message._id %>?_method=DELETE" method="post">
+                <button>Delete</button>
+            </form>
+            <a role="button" href="/">All Tweets</a>
+        </footer>
+    </main>
 </body>
 </html>
