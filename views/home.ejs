@@ -14,15 +14,15 @@
         <h1 class=>Hello Ristek</h1>
         <h2>These are the tweets available :</h2>
         <% for( message of messages ) { %>
-            <article class="card">
-                <p>halloo</p>
-                <h3><%= message.content %></h3>
-                <a href="tweet/<%= message._id %>" role="button" class="contrast">Edit</a>
-                <a href="#" role="button">Delete</a>
-            </article>
+            <form action="/tweet/<%= message._id %>?_method=DELETE" method="post">
+                <article class="card">
+                    <p>halloo</p>
+                    <h3 class="content"><%= message.content %></h3>
+                    <a href="/tweet/<%= message._id %>/edit" role="button" class="contrast">Edit</a>
+                    <button role="button" class="delete">Delete</button>
+                </article>
+            </form>
         <% } %>
-        <!-- <ul>
-        </ul> -->
     </main>
 </body>
 </html>
