@@ -5,20 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Ristek Social</title>
 </head>
 <body>
     <%- include('partials/navbar') %>
     <main class="container">
-        <h1>Hello World</h1>
-        <h2>These are the messages available :</h2>
-        <ul>
-            <% for( message of messages ) { %>
-                <li>
-                        <a href="tweet/<%= message._id %>"><%= message.content %></a>
-                </li>
-            <% } %>
-        </ul>
+        <h1 class=>Hello Ristek</h1>
+        <h2>These are the tweets available :</h2>
+        <% for( message of messages ) { %>
+            <article class="card">
+                <p>halloo</p>
+                <h3><%= message.content %></h3>
+                <a href="tweet/<%= message._id %>" role="button" class="contrast">Edit</a>
+                <a href="#" role="button">Delete</a>
+            </article>
+        <% } %>
+        <!-- <ul>
+        </ul> -->
     </main>
 </body>
 </html>
