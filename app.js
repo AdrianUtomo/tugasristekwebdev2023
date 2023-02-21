@@ -55,7 +55,7 @@ app.get('/create', (req,res) => {
 app.post('/create', async (req,res) =>{
     const {data} = await axios.post(`//${req.get('host')}/api/create`, {
         content: req.body.content,
-        date: req.body.date
+        date: new Date(Date.now())
       }, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -79,7 +79,7 @@ app.get('/tweet/:id/edit', async(req,res) =>{
 app.post('/tweet/:id', async(req,res) =>{
     await axios.put(`//${req.get('host')}/api/${req.params.id}`, {
         content: req.body.content,
-        date: req.body.date
+        date: new Date(Date.now())
       }, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

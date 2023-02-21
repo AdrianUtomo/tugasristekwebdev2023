@@ -16,7 +16,7 @@
         <% for( message of messages ) { %>
             <form action="/tweet/<%= message._id %>?_method=DELETE" method="post">
                 <article class="card">
-                    <p>halloo</p>
+                    <p>Anonymous - <%= new Date(message.date).toUTCString() %></p>
                     <h3 class="content"><%= message.content %></h3>
                     <a href="/tweet/<%= message._id %>/edit" role="button" class="contrast">Edit</a>
                     <button role="button" class="delete">Delete</button>
