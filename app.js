@@ -61,10 +61,10 @@ app.post('/create', async (req,res) =>{
             'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-    const message = data;
+    // const message = data;
     // const message = new Message(req.body)
     // await message.save()
-    res.redirect(`/tweet/${message._id}`)
+    res.redirect('/')
 })
 ///////////////
 
@@ -87,7 +87,7 @@ app.post('/tweet/:id', async(req,res) =>{
       })
     // const {id} = req.params
     // await Message.findByIdAndUpdate(id, {...req.body})
-    res.redirect(`/tweet/${req.params.id}`)
+    res.redirect('/')
 })
 ///////////////
 

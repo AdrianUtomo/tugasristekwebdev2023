@@ -12,13 +12,10 @@
     <main class="container">
         <h1>Edit Tweet</h1>
         <h2><%= message.content %></h2>
-        <h2><%= message.date %></h2>
+        <h2><%= new Date(message.date).toUTCString() %></h2>
         <form action="/tweet/<%= message._id %>" method="post">
             <label for="content">Content</label>
             <input type="text" name="content" id="content" value="<%= message.content %>">
-            <br>
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date" value="<%= message.date %>">
             <button>Submit</button>
         </form>
     </main>
