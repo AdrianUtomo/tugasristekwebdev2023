@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv').config()
 const path = require('path');
 const mongoose = require('mongoose')
 const axios = require('axios')
@@ -8,10 +9,10 @@ const morgan = require('morgan')
 const Message = require('./models/risteksocial')
 
 // Use This for Local Database
-// mongoose.connect('mongodb://localhost:27017/ristek-social')
+mongoose.connect(process.env.DB_URI)
 
 // Use This for Cloud Database (Railway)
-mongoose.connect('mongodb://mongo:DeG7GPvynz0JDNBFtOzU@containers-us-west-195.railway.app:5752')
+// mongoose.connect('mongodb://mongo:DeG7GPvynz0JDNBFtOzU@containers-us-west-195.railway.app:5752')
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, "connection error:"))
