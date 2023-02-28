@@ -18,9 +18,14 @@
     ```
     npm install
     ```
-4. Before running the app, make sure MongoDB is already running on your system.
-5. Start the app by running this command on your terminal
+4. Create a file called `.env` in the root folder and fill it with this variables :
+    ```
+    MONGO_URL = "mongodb://localhost:27017/ristek-social"
+    PORT = 3000
+    ```
+5. Before running the app, make sure MongoDB is already running on your system.
+6. Start the app by running this command on your terminal
     ```
     nodemon app.js
     ```
-6. The app should be running on ``localhost:3000``
+7. That's it, the app should be running on ``localhost:3000`` 😍
