@@ -10,9 +10,6 @@ const Message = require('./models/risteksocial')
 
 mongoose.connect(process.env.MONGO_URL)
 
-// Use This for Cloud Database (Railway)
-// mongoose.connect('mongodb://mongo:DeG7GPvynz0JDNBFtOzU@containers-us-west-195.railway.app:5752')
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, "connection error:"))
 db.once("open", ()=> {
@@ -39,14 +36,12 @@ require('./api/message')(app,Message)
 app.get('/', async (req,res) => {
     const {data} = await axios.get(`//${req.get('host')}/api/all`)
     const messages = data;
-    // const messages = await Message.find({})
     res.render('home', {messages})
 })
 
 app.get('/tweet/:id', async (req,res) => {
     const {data} = await axios.get(`//${req.get('host')}/api/${req.params.id}`)
     const message = data;
-    // const message = await Message.findById(req.params.id)
     res.render('show', {message})
 })
 ///////////////
@@ -57,7 +52,7 @@ app.get('/create', (req,res) => {
 })
 
 app.post('/create', async (req,res) =>{
-    const {data} = await axios.post(`//${req.get('host')}/api/create`, {
+    await axios.post(`//${req.get('host')}/api/create`, {
         content: req.body.content,
         date: new Date(Date.now())
       }, {
@@ -65,9 +60,6 @@ app.post('/create', async (req,res) =>{
             'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-    // const message = data;
-    // const message = new Message(req.body)
-    // await message.save()
     res.redirect('/')
 })
 ///////////////
@@ -76,7 +68,6 @@ app.post('/create', async (req,res) =>{
 app.get('/tweet/:id/edit', async(req,res) =>{
     const {data} = await axios.get(`//${req.get('host')}/api/${req.params.id}`)
     const message = data;
-    // const message = await Message.findById(req.params.id)
     res.render('edit', {message})
 })
 
@@ -89,8 +80,6 @@ app.post('/tweet/:id', async(req,res) =>{
             'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-    // const {id} = req.params
-    // await Message.findByIdAndUpdate(id, {...req.body})
     res.redirect('/')
 })
 ///////////////
