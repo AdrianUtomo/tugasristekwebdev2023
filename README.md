@@ -8,7 +8,7 @@
 ### How to Use :
 1. Make sure you have NodeJS and MongoDB installed on your system. If not, you can install it first with the following links :
     - [NodeJS](https://nodejs.org/en/download/)
-    - [MongoDB](https://zarkom.net/blogs/how-to-install-mongodb-for-development-in-windows-3328)
+    - MongoDB : [Windows](https://zarkom.net/blogs/how-to-install-mongodb-for-development-in-windows-3328), [macOS](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/)
 
 2. Clone this project to your system by running this command
     ```
