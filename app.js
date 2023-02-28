@@ -8,7 +8,6 @@ const methodOverride = require('method-override')
 const morgan = require('morgan')
 const Message = require('./models/risteksocial')
 
-// Use This for Local Database
 mongoose.connect(process.env.MONGO_URL)
 
 // Use This for Cloud Database (Railway)
