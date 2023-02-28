@@ -9,7 +9,7 @@ const morgan = require('morgan')
 const Message = require('./models/risteksocial')
 
 // Use This for Local Database
-mongoose.connect(process.env.DB_URI)
+mongoose.connect(process.env.MONGO_URL)
 
 // Use This for Cloud Database (Railway)
 // mongoose.connect('mongodb://mongo:DeG7GPvynz0JDNBFtOzU@containers-us-west-195.railway.app:5752')
