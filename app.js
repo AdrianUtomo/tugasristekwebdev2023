@@ -27,7 +27,7 @@ app.use(methodOverride('_method'))
 
 app.use(express.urlencoded({extended: true}))
 
-app.listen(3000, ()=> {
+app.listen(process.env.PORT, ()=> {
     console.log('Serving on port 3000')
 })
 
